@@ -53,7 +53,6 @@ const Body: React.FC = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  // Text-to-speech functionality
   const handleSpeak = () => {
     if (!voiceName) return; // If no voice is selected, do nothing
 
