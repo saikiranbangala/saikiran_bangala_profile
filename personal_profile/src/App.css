@@ -1,0 +1,124 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.profile {
+  text-align: center;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+.background-body-color{
+  background-color: rgb(83 169 46);
+}
+/* type js style  */
+.typeJsWrapper {
+  padding: 50px;
+}
+.typeJsText {
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 30px;
+  display: inline-block;
+  padding: 0;
+  border-right: 1px solid #c9f11a;
+}
+@keyframes backgroundChange {
+  0% {
+    background-color: #ffafbd;
+  }
+  25% {
+    background-color: #ffc3a0;
+  }
+  50% {
+    background-color: #2193b0;
+  }
+  75% {
+    background-color: #6dd5ed;
+  }
+  100% {
+    background-color: #ffafbd;
+  }
+}
+
+.background-animation {
+  animation: backgroundChange 10s infinite;
+  height: 100vh;
+  width: 100%;
+}
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 6px;
+}
+
+.hover-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+.custom-nav-link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding: 5px 10px;
+}
+
+.custom-nav-link:hover {
+  color: white;
+  /* text-decoration: underline; */
+  background-color: #5c8f87; /* Highlight color on hover */
+}
+
+.custom-nav-link:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: white; /* Underline color */
+  transition: width 0.3s ease-in-out;
+  width: 100%; /* Full underline on hover */
+}
+
+
+
+
