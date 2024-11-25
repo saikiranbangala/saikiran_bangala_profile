@@ -1,0 +1,99 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #0f0303;
+  color: #333;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.col-6 {
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.timeline {
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item {
+  margin-bottom: 15px;
+}
+
+.timeline-item .year {
+  font-weight: bold;
+  color: #0056b3;
+}
+
+.timeline-item .details {
+  margin-left: 10px;
+}
+
+.timeline-item .role {
+  font-size: 1.1em;
+}
+
+.timeline-item .company {
+  font-style: italic;
+  color: #555;
+}
+
+.icons-floating {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  justify-items: center;
+  align-items: center;
+}
+
+.icon {
+  width: 110px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #fff;
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+.js-icon { background-color: #f7df1e; }
+.ts-icon { background-color: #007acc; }
+.react-icon { background-color: #61dafb; }
+.node-icon { background-color: #68a063; }
+.mongo-icon { background-color: #4db33d; }
+.html-icon { background-color: #e34f26; }
+.css-icon { background-color: #1572b6; }
+.git-icon { background-color: #f05032; }
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 10px 0;
+  background: #222;
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}

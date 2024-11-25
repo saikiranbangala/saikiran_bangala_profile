@@ -51,35 +51,46 @@ const Body: React.FC = () => {
 
     const intervalId = setInterval(typeEffect, 100);
     return () => clearInterval(intervalId);
-  }, []);
+  }, []); 
 
   const handleSpeak = () => {
     if (!voiceName) return; // If no voice is selected, do nothing
 
-    const utterance = new SpeechSynthesisUtterance(
-      `I am a passionate and experienced web developer with a strong
-      background in creating dynamic and responsive web applications. With
-      3 years 2 months of professional experience, I specialize in the
-      MERN stack. I have a solid
-      foundation in JavaScript.`
-    );
-    utterance.voice = voiceName;
-    utterance.pitch = 1.2; // Slightly higher pitch for a feminine tone
-    utterance.rate = 1.0;  // Normal speed
+    const longText = `I am a passionate and experienced web developer with a strong
+    background in creating dynamic and responsive web applications. With
+    3 years 5 months of professional experience, I specialize in the
+    MERN stack. I have a solid
+    foundation in JavaScript. If you are interested in downloading my resume, please click on the link below.`;
 
-    // Event listener to know when the current speech has finished
-    utterance.onend = () => {
-      console.log("Speech has finished.");
+    // Function to speak in chunks
+    const speakChunks = (text: string) => {
+      const chunks = text.match(/.{1,200}(\s|$)/g); // Split into ~200-character chunks
+      if (!chunks) return;
+
+      chunks.forEach((chunk, index) => {
+        const utterance = new SpeechSynthesisUtterance(chunk);
+        utterance.voice = voiceName;
+        utterance.pitch = 1.2; // Slightly higher pitch for a feminine tone
+        utterance.rate = 1.0; // Normal speed
+
+        if (index === chunks.length - 1) {
+          utterance.onend = customFunction; // Only call at the end of the last chunk
+        }
+
+        utterance.onerror = (event) => {
+          console.error("An error occurred during speech synthesis:", event.error);
+        };
+
+        window.speechSynthesis.speak(utterance);
+      });
     };
 
-    // Stop any ongoing speech before starting a new utterance, only if it's playing
-    if (speechSynthesis.speaking) {
-      // Check if the current speech has finished before canceling
-      window.speechSynthesis.cancel();
-    }
+    speakChunks(longText);
+  };
 
-    // Start the new speech
-    window.speechSynthesis.speak(utterance);
+  // Custom function to call when speech ends
+  const customFunction = () => {
+    alert("Speech completed! Now calling custom function...");
   };
 
   return (
@@ -112,7 +123,7 @@ const Body: React.FC = () => {
           <div className="mt-4" style={{ fontSize: "large" }}>
             I am a passionate and experienced web developer with a strong
             background in creating dynamic and responsive web applications. With
-            3 years 2 months of professional experience, I specialize in the
+            3 years 5 months of professional experience, I specialize in the
             MERN stack (MongoDB, Express.js, React, Node.js), and I have a solid
             foundation in JavaScript.
           </div>
@@ -125,15 +136,14 @@ const Body: React.FC = () => {
       <div className="row p-3 justify-content-center g-3">
         {[{ title: "3+ ", subtitle: "Years Of Experience" },
           { title: "5", subtitle: "Projects Completed" },
-          { title: "7", subtitle: "Technologies Used" }]
-          .map((item, idx) => (
-            <div key={idx} className="card col-4 d-flex gap-3 hover-card text-center">
-              <span className="mt-3">
-                <h1>{item.title}</h1>
-              </span>
-              <h2>{item.subtitle}</h2>
-            </div>
-          ))}
+          { title: "7", subtitle: "Technologies Used" }].map((item, idx) => (
+          <div key={idx} className="card col-4 d-flex gap-3 hover-card text-center">
+            <span className="mt-3">
+              <h1>{item.title}</h1>
+            </span>
+            <h2>{item.subtitle}</h2>
+          </div>
+        ))}
       </div>
     </div>
   );
